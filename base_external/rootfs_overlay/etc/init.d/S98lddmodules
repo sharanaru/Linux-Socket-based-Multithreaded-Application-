@@ -1,0 +1,28 @@
+#! /bin/sh
+case "$1" in
+	start)
+		echo "Scull load"
+		cd ../../lib/modules/4.19.16/extra
+		sh scull_load
+		echo "module faulty start"
+		sh module_load faulty
+		echo "Module start- Hello"
+		modprobe hello
+		;;
+	stop)
+		echo "Scull unload"
+		cd ../../lib/modules/4.19.16/extra
+		sh scull_unload
+		echo "Module faulty -Stop"
+		sh module_unload faulty
+		echo "Module hello- Stop"
+		rmmod hello
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+	exit 1
+esac
+
+exit 0
+
+

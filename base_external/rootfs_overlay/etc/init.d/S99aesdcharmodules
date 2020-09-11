@@ -1,0 +1,23 @@
+#! /bin/sh
+case "$1" in
+	start)
+		echo "Char driver load"
+		cd ../../lib/modules/4.19.16/extra
+		sh aesdchar_load
+		modprobe aesdchar
+		;;
+	stop)
+		echo "Char driver unload"
+		cd ../../lib/modules/4.19.16/extra
+		sh aesdchar_unload
+		echo "Module Char driver- Stop"
+		rmmod aesdchar
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+	exit 1
+esac
+
+exit 0
+
+
